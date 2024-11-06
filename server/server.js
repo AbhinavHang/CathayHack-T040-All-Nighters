@@ -69,7 +69,20 @@ async function populateDatabase() {
           shipper: 'Global Tech Manufacturing',
           consignee: 'Singapore Electronics',
           specialHandling: ['DGR', 'CAO'],
-          status: 'In Transit',
+          status: 'Done',
+          description: 'Industrial Equipment',
+          deadline: new Date(Date.now() + 7200000), // 2 hours from now
+        },
+        {
+          awbNumber: '160-87854301',
+          origin: 'PVG',
+          destination: 'SIN',
+          weight: '1,240 KG',
+          pieces: 8,
+          shipper: 'Global Tech Manufacturing',
+          consignee: 'Singapore Electronics',
+          specialHandling: ['DGR', 'CAO'],
+          status: 'Done',
           description: 'Industrial Equipment',
           deadline: new Date(Date.now() + 7200000), // 2 hours from now
         },
@@ -99,6 +112,15 @@ app.get('/api/cargo', async (req, res) => {
 app.get('/api/cargo/awaiting', async (req, res) => {
   try {
     const cargo = await Cargo.find({ status: 'Awaiting' })
+    res.json(cargo)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+})
+
+app.get('/api/cargo/history', async (req, res) => {
+  try {
+    const cargo = await Cargo.find({ status: 'Done' })
     res.json(cargo)
   } catch (error) {
     res.status(500).json({ message: error.message })
