@@ -1,0 +1,682 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BCCE66792CDB80C2000C39A1 /* cargo_mobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66782CDB80C2000C39A1 /* cargo_mobileApp.swift */; };
+		BCCE667B2CDB80C2000C39A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE667A2CDB80C2000C39A1 /* ContentView.swift */; };
+		BCCE667D2CDB80CC000C39A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCCE667C2CDB80CC000C39A1 /* Assets.xcassets */; };
+		BCCE66812CDB80CC000C39A1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCCE66802CDB80CC000C39A1 /* Preview Assets.xcassets */; };
+		BCCE668B2CDB80CD000C39A1 /* cargo_mobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE668A2CDB80CD000C39A1 /* cargo_mobileTests.swift */; };
+		BCCE66952CDB80CD000C39A1 /* cargo_mobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66942CDB80CD000C39A1 /* cargo_mobileUITests.swift */; };
+		BCCE66972CDB80CD000C39A1 /* cargo_mobileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66962CDB80CD000C39A1 /* cargo_mobileUITestsLaunchTests.swift */; };
+		BCCE66A42CDB8131000C39A1 /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66A32CDB8131000C39A1 /* ScannerViewModel.swift */; };
+		BCCE66A62CDB814E000C39A1 /* CargoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66A52CDB814E000C39A1 /* CargoLabel.swift */; };
+		BCCE66A82CDB8186000C39A1 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66A72CDB8186000C39A1 /* CameraView.swift */; };
+		BCCE66AA2CDB81BD000C39A1 /* ScannedLabelsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66A92CDB81BD000C39A1 /* ScannedLabelsListView.swift */; };
+		BCCE66EA2CDBAA7F000C39A1 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66E92CDBAA7F000C39A1 /* CameraPreviewView.swift */; };
+		BCCE66EC2CDBACD5000C39A1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66EB2CDBACD5000C39A1 /* MainTabView.swift */; };
+		BCCE66EE2CDBAD02000C39A1 /* ScannerTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66ED2CDBAD02000C39A1 /* ScannerTabView.swift */; };
+		BCCE66F02CDBAD31000C39A1 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66EF2CDBAD31000C39A1 /* HistoryView.swift */; };
+		BCCE66F22CDBAD54000C39A1 /* AwaitingScansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66F12CDBAD54000C39A1 /* AwaitingScansView.swift */; };
+		BCCE66F42CDBAD77000C39A1 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66F32CDBAD77000C39A1 /* UserProfileView.swift */; };
+		BCCE66F62CDBB7AC000C39A1 /* CargoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66F52CDBB7AC000C39A1 /* CargoDetailView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BCCE66872CDB80CD000C39A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCCE666D2CDB80C2000C39A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCCE66742CDB80C2000C39A1;
+			remoteInfo = "cargo-mobile";
+		};
+		BCCE66912CDB80CD000C39A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCCE666D2CDB80C2000C39A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCCE66742CDB80C2000C39A1;
+			remoteInfo = "cargo-mobile";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BCCE66752CDB80C2000C39A1 /* cargo-mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cargo-mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCCE66782CDB80C2000C39A1 /* cargo_mobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cargo_mobileApp.swift; sourceTree = "<group>"; };
+		BCCE667A2CDB80C2000C39A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BCCE667C2CDB80CC000C39A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BCCE667E2CDB80CC000C39A1 /* cargo_mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = cargo_mobile.entitlements; sourceTree = "<group>"; };
+		BCCE66802CDB80CC000C39A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BCCE66862CDB80CD000C39A1 /* cargo-mobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cargo-mobileTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCCE668A2CDB80CD000C39A1 /* cargo_mobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cargo_mobileTests.swift; sourceTree = "<group>"; };
+		BCCE66902CDB80CD000C39A1 /* cargo-mobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cargo-mobileUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCCE66942CDB80CD000C39A1 /* cargo_mobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cargo_mobileUITests.swift; sourceTree = "<group>"; };
+		BCCE66962CDB80CD000C39A1 /* cargo_mobileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cargo_mobileUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BCCE66A32CDB8131000C39A1 /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
+		BCCE66A52CDB814E000C39A1 /* CargoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoLabel.swift; sourceTree = "<group>"; };
+		BCCE66A72CDB8186000C39A1 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		BCCE66A92CDB81BD000C39A1 /* ScannedLabelsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedLabelsListView.swift; sourceTree = "<group>"; };
+		BCCE66AB2CDB826B000C39A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BCCE66E92CDBAA7F000C39A1 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		BCCE66EB2CDBACD5000C39A1 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		BCCE66ED2CDBAD02000C39A1 /* ScannerTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerTabView.swift; sourceTree = "<group>"; };
+		BCCE66EF2CDBAD31000C39A1 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		BCCE66F12CDBAD54000C39A1 /* AwaitingScansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwaitingScansView.swift; sourceTree = "<group>"; };
+		BCCE66F32CDBAD77000C39A1 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		BCCE66F52CDBB7AC000C39A1 /* CargoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoDetailView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BCCE66722CDB80C2000C39A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCCE66832CDB80CD000C39A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCCE668D2CDB80CD000C39A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BCCE666C2CDB80C2000C39A1 = {
+			isa = PBXGroup;
+			children = (
+				BCCE66772CDB80C2000C39A1 /* cargo-mobile */,
+				BCCE66892CDB80CD000C39A1 /* cargo-mobileTests */,
+				BCCE66932CDB80CD000C39A1 /* cargo-mobileUITests */,
+				BCCE66762CDB80C2000C39A1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BCCE66762CDB80C2000C39A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BCCE66752CDB80C2000C39A1 /* cargo-mobile.app */,
+				BCCE66862CDB80CD000C39A1 /* cargo-mobileTests.xctest */,
+				BCCE66902CDB80CD000C39A1 /* cargo-mobileUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BCCE66772CDB80C2000C39A1 /* cargo-mobile */ = {
+			isa = PBXGroup;
+			children = (
+				BCCE66AB2CDB826B000C39A1 /* Info.plist */,
+				BCCE66782CDB80C2000C39A1 /* cargo_mobileApp.swift */,
+				BCCE667A2CDB80C2000C39A1 /* ContentView.swift */,
+				BCCE667C2CDB80CC000C39A1 /* Assets.xcassets */,
+				BCCE667E2CDB80CC000C39A1 /* cargo_mobile.entitlements */,
+				BCCE667F2CDB80CC000C39A1 /* Preview Content */,
+				BCCE66A32CDB8131000C39A1 /* ScannerViewModel.swift */,
+				BCCE66A52CDB814E000C39A1 /* CargoLabel.swift */,
+				BCCE66A72CDB8186000C39A1 /* CameraView.swift */,
+				BCCE66A92CDB81BD000C39A1 /* ScannedLabelsListView.swift */,
+				BCCE66E92CDBAA7F000C39A1 /* CameraPreviewView.swift */,
+				BCCE66EB2CDBACD5000C39A1 /* MainTabView.swift */,
+				BCCE66ED2CDBAD02000C39A1 /* ScannerTabView.swift */,
+				BCCE66EF2CDBAD31000C39A1 /* HistoryView.swift */,
+				BCCE66F12CDBAD54000C39A1 /* AwaitingScansView.swift */,
+				BCCE66F32CDBAD77000C39A1 /* UserProfileView.swift */,
+				BCCE66F52CDBB7AC000C39A1 /* CargoDetailView.swift */,
+			);
+			path = "cargo-mobile";
+			sourceTree = "<group>";
+		};
+		BCCE667F2CDB80CC000C39A1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BCCE66802CDB80CC000C39A1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BCCE66892CDB80CD000C39A1 /* cargo-mobileTests */ = {
+			isa = PBXGroup;
+			children = (
+				BCCE668A2CDB80CD000C39A1 /* cargo_mobileTests.swift */,
+			);
+			path = "cargo-mobileTests";
+			sourceTree = "<group>";
+		};
+		BCCE66932CDB80CD000C39A1 /* cargo-mobileUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BCCE66942CDB80CD000C39A1 /* cargo_mobileUITests.swift */,
+				BCCE66962CDB80CD000C39A1 /* cargo_mobileUITestsLaunchTests.swift */,
+			);
+			path = "cargo-mobileUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BCCE66742CDB80C2000C39A1 /* cargo-mobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCCE669A2CDB80CD000C39A1 /* Build configuration list for PBXNativeTarget "cargo-mobile" */;
+			buildPhases = (
+				BCCE66712CDB80C2000C39A1 /* Sources */,
+				BCCE66722CDB80C2000C39A1 /* Frameworks */,
+				BCCE66732CDB80C2000C39A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "cargo-mobile";
+			productName = "cargo-mobile";
+			productReference = BCCE66752CDB80C2000C39A1 /* cargo-mobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BCCE66852CDB80CD000C39A1 /* cargo-mobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCCE669D2CDB80CD000C39A1 /* Build configuration list for PBXNativeTarget "cargo-mobileTests" */;
+			buildPhases = (
+				BCCE66822CDB80CD000C39A1 /* Sources */,
+				BCCE66832CDB80CD000C39A1 /* Frameworks */,
+				BCCE66842CDB80CD000C39A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCCE66882CDB80CD000C39A1 /* PBXTargetDependency */,
+			);
+			name = "cargo-mobileTests";
+			productName = "cargo-mobileTests";
+			productReference = BCCE66862CDB80CD000C39A1 /* cargo-mobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BCCE668F2CDB80CD000C39A1 /* cargo-mobileUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCCE66A02CDB80CD000C39A1 /* Build configuration list for PBXNativeTarget "cargo-mobileUITests" */;
+			buildPhases = (
+				BCCE668C2CDB80CD000C39A1 /* Sources */,
+				BCCE668D2CDB80CD000C39A1 /* Frameworks */,
+				BCCE668E2CDB80CD000C39A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCCE66922CDB80CD000C39A1 /* PBXTargetDependency */,
+			);
+			name = "cargo-mobileUITests";
+			productName = "cargo-mobileUITests";
+			productReference = BCCE66902CDB80CD000C39A1 /* cargo-mobileUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BCCE666D2CDB80C2000C39A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					BCCE66742CDB80C2000C39A1 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					BCCE66852CDB80CD000C39A1 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = BCCE66742CDB80C2000C39A1;
+					};
+					BCCE668F2CDB80CD000C39A1 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = BCCE66742CDB80C2000C39A1;
+					};
+				};
+			};
+			buildConfigurationList = BCCE66702CDB80C2000C39A1 /* Build configuration list for PBXProject "cargo-mobile" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BCCE666C2CDB80C2000C39A1;
+			productRefGroup = BCCE66762CDB80C2000C39A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BCCE66742CDB80C2000C39A1 /* cargo-mobile */,
+				BCCE66852CDB80CD000C39A1 /* cargo-mobileTests */,
+				BCCE668F2CDB80CD000C39A1 /* cargo-mobileUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BCCE66732CDB80C2000C39A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCCE66812CDB80CC000C39A1 /* Preview Assets.xcassets in Resources */,
+				BCCE667D2CDB80CC000C39A1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCCE66842CDB80CD000C39A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCCE668E2CDB80CD000C39A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BCCE66712CDB80C2000C39A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCCE66AA2CDB81BD000C39A1 /* ScannedLabelsListView.swift in Sources */,
+				BCCE66EE2CDBAD02000C39A1 /* ScannerTabView.swift in Sources */,
+				BCCE667B2CDB80C2000C39A1 /* ContentView.swift in Sources */,
+				BCCE66A42CDB8131000C39A1 /* ScannerViewModel.swift in Sources */,
+				BCCE66EC2CDBACD5000C39A1 /* MainTabView.swift in Sources */,
+				BCCE66EA2CDBAA7F000C39A1 /* CameraPreviewView.swift in Sources */,
+				BCCE66F22CDBAD54000C39A1 /* AwaitingScansView.swift in Sources */,
+				BCCE66F62CDBB7AC000C39A1 /* CargoDetailView.swift in Sources */,
+				BCCE66F42CDBAD77000C39A1 /* UserProfileView.swift in Sources */,
+				BCCE66792CDB80C2000C39A1 /* cargo_mobileApp.swift in Sources */,
+				BCCE66F02CDBAD31000C39A1 /* HistoryView.swift in Sources */,
+				BCCE66A82CDB8186000C39A1 /* CameraView.swift in Sources */,
+				BCCE66A62CDB814E000C39A1 /* CargoLabel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCCE66822CDB80CD000C39A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCCE668B2CDB80CD000C39A1 /* cargo_mobileTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCCE668C2CDB80CD000C39A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCCE66952CDB80CD000C39A1 /* cargo_mobileUITests.swift in Sources */,
+				BCCE66972CDB80CD000C39A1 /* cargo_mobileUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BCCE66882CDB80CD000C39A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCCE66742CDB80C2000C39A1 /* cargo-mobile */;
+			targetProxy = BCCE66872CDB80CD000C39A1 /* PBXContainerItemProxy */;
+		};
+		BCCE66922CDB80CD000C39A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCCE66742CDB80C2000C39A1 /* cargo-mobile */;
+			targetProxy = BCCE66912CDB80CD000C39A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BCCE66982CDB80CD000C39A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BCCE66992CDB80CD000C39A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		BCCE669B2CDB80CD000C39A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "cargo-mobile/cargo_mobile.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"cargo-mobile/Preview Content\"";
+				DEVELOPMENT_TEAM = K8Z8U59P8C;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "cargo-mobile/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSUIElement = NO;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "armv7 video-camera";
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "hk.edu.hkbu.comp.cargo-mobile";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BCCE669C2CDB80CD000C39A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "cargo-mobile/cargo_mobile.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"cargo-mobile/Preview Content\"";
+				DEVELOPMENT_TEAM = K8Z8U59P8C;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "cargo-mobile/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSUIElement = NO;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "armv7 video-camera";
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "hk.edu.hkbu.comp.cargo-mobile";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BCCE669E2CDB80CD000C39A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K8Z8U59P8C;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "hk.edu.hkbu.comp.cargo-mobileTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cargo-mobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cargo-mobile";
+			};
+			name = Debug;
+		};
+		BCCE669F2CDB80CD000C39A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K8Z8U59P8C;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "hk.edu.hkbu.comp.cargo-mobileTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cargo-mobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cargo-mobile";
+			};
+			name = Release;
+		};
+		BCCE66A12CDB80CD000C39A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K8Z8U59P8C;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "hk.edu.hkbu.comp.cargo-mobileUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "cargo-mobile";
+			};
+			name = Debug;
+		};
+		BCCE66A22CDB80CD000C39A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K8Z8U59P8C;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "hk.edu.hkbu.comp.cargo-mobileUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "cargo-mobile";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BCCE66702CDB80C2000C39A1 /* Build configuration list for PBXProject "cargo-mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCCE66982CDB80CD000C39A1 /* Debug */,
+				BCCE66992CDB80CD000C39A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCCE669A2CDB80CD000C39A1 /* Build configuration list for PBXNativeTarget "cargo-mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCCE669B2CDB80CD000C39A1 /* Debug */,
+				BCCE669C2CDB80CD000C39A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCCE669D2CDB80CD000C39A1 /* Build configuration list for PBXNativeTarget "cargo-mobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCCE669E2CDB80CD000C39A1 /* Debug */,
+				BCCE669F2CDB80CD000C39A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCCE66A02CDB80CD000C39A1 /* Build configuration list for PBXNativeTarget "cargo-mobileUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCCE66A12CDB80CD000C39A1 /* Debug */,
+				BCCE66A22CDB80CD000C39A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BCCE666D2CDB80C2000C39A1 /* Project object */;
+}
