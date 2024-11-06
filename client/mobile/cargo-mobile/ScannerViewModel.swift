@@ -1,30 +1,15 @@
-//
-//  ScannerViewModel.swift
-//  cargo-mobile-2
-//
-//  Created by Аяжан on 6/11/2024.
-//
-
-import Foundation
-
-//
-//  ScannerViewModel.swift
-//  cargo-mobile
-//
-//  Created by Аяжан on 6/11/2024.
-//
-
 import Foundation
 import Vision
 import CoreImage
 import AVFoundation
 
-class ScannerViewModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+class ScannerViewModel: NSObject, ObservableObject, AVCaptureMetadataOutputObjectsDelegate {
     @Published var isScanning = false
     @Published var scannedLabels: [CargoLabel] = []
     @Published var showError = false
     @Published var errorMessage = ""
     @Published var isTorchOn = false
+    @Published var lastScannedCode: String?
     
     var captureSession: AVCaptureSession?
     
@@ -50,11 +35,12 @@ class ScannerViewModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSamp
                 session.addInput(input)
             }
             
-            let output = AVCaptureVideoDataOutput()
-            output.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: .userInitiated))
+            let metadataOutput = AVCaptureMetadataOutput()
             
-            if session.canAddOutput(output) {
-                session.addOutput(output)
+            if session.canAddOutput(metadataOutput) {
+                session.addOutput(metadataOutput)
+                metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+                metadataOutput.metadataObjectTypes = [.qr]
             }
             
             session.commitConfiguration()
@@ -64,6 +50,47 @@ class ScannerViewModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSamp
             }
         } catch {
             showError(message: "Failed to setup camera: \(error.localizedDescription)")
+        }
+    }
+    
+    private func parseCargoLabel(_ text: String) -> CargoLabel? {
+        let components = text.split(separator: "-")
+        if components.count == 3 && components[0] == "AWB" {
+            return CargoLabel(
+                id: String(components[1]),
+                awbNumber: String(components[1]),
+                destination: String(components[2]),
+                timestamp: Date(),
+                weight: "0.0 KG",  // Default values
+                pieces: 0,
+                shipper: "Cathay",
+                consignee: "John",
+                specialHandling: [],
+                status: "Pending"
+            )
+        }
+        return nil
+    }
+    
+    // QR Code delegate method
+    func metadataOutput(_ output: AVCaptureMetadataOutput,
+                       didOutput metadataObjects: [AVMetadataObject],
+                       from connection: AVCaptureConnection) {
+        if let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
+           let stringValue = metadataObject.stringValue {
+            
+            // Play a sound when QR code is detected
+            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            
+            lastScannedCode = stringValue
+            let cargoLabel = CargoLabel.mockDataFor(qrCode: stringValue)
+            
+            if !scannedLabels.contains(where: { $0.id == cargoLabel.id }) {
+                DispatchQueue.main.async {
+                    self.scannedLabels.append(cargoLabel)
+                    self.isScanning = false
+                }
+            }
         }
     }
     
@@ -87,66 +114,6 @@ class ScannerViewModel: NSObject, ObservableObject, AVCaptureVideoDataOutputSamp
         } catch {
             showError(message: "Failed to toggle torch: \(error.localizedDescription)")
         }
-    }
-    
-    // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        
-        let ciImage = CIImage(cvPixelBuffer: imageBuffer)
-        processImage(ciImage)
-    }
-    
-    private func processImage(_ image: CIImage) {
-        let request = VNRecognizeTextRequest { [weak self] request, error in
-            if let error = error {
-                self?.showError(message: "Text recognition failed: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
-            
-            let recognizedStrings = observations.compactMap { observation in
-                observation.topCandidates(1).first?.string
-            }
-            
-            self?.processRecognizedText(recognizedStrings)
-        }
-        
-        request.recognitionLevel = .accurate
-        
-        let handler = VNImageRequestHandler(ciImage: image)
-        
-        do {
-            try handler.perform([request])
-        } catch {
-            showError(message: "Failed to process image: \(error.localizedDescription)")
-        }
-    }
-    
-    private func processRecognizedText(_ strings: [String]) {
-        for text in strings {
-            if let label = parseCargoLabel(text) {
-                DispatchQueue.main.async {
-                    if !self.scannedLabels.contains(where: { $0.id == label.id }) {
-                        self.scannedLabels.append(label)
-                    }
-                }
-            }
-        }
-    }
-    
-    private func parseCargoLabel(_ text: String) -> CargoLabel? {
-        let components = text.split(separator: "-")
-        if components.count == 3 && components[0] == "AWB" {
-            return CargoLabel(
-                id: String(components[1]),
-                awbNumber: String(components[1]),
-                destination: String(components[2]),
-                timestamp: Date()
-            )
-        }
-        return nil
     }
     
     private func showError(message: String) {

@@ -11,7 +11,7 @@ import SwiftUI
 struct cargo_mobileApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
     }
 }

@@ -12,37 +12,37 @@ import AVFoundation
 import Foundation
 import UIKit
 
-struct CameraView: UIViewControllerRepresentable {
+
+struct CameraView: View {
     @ObservedObject var viewModel: ScannerViewModel
     
-    func makeUIViewController(context: Context) -> UIViewController {
-        let viewController = UIViewController()
-        
-        // Setup preview layer
-        if let captureSession = viewModel.captureSession {
-            let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-            previewLayer.frame = UIScreen.main.bounds
-            previewLayer.videoGravity = .resizeAspectFill
-            viewController.view.layer.addSublayer(previewLayer)
-        }
-        
-        return viewController
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Handle updates if needed
-    }
-    
-    // Add Coordinator if needed
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    class Coordinator {
-        let parent: CameraView
-        
-        init(_ parent: CameraView) {
-            self.parent = parent
+    var body: some View {
+        ZStack {
+            CameraPreviewView(session: viewModel.captureSession)
+                .edgesIgnoringSafeArea(.all)
+            
+            // QR Code scanning frame
+            Rectangle()
+                .stroke(Color.white, lineWidth: 2)
+                .frame(width: 250, height: 250)
+                .background(Color.black.opacity(0.3))
+                .overlay(
+                    Image(systemName: "qrcode.viewfinder")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .foregroundColor(.white.opacity(0.8))
+                )
+            
+            VStack {
+                Spacer()
+                Text("Align QR Code within frame")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.black.opacity(0.7))
+                    .cornerRadius(10)
+                    .padding(.bottom, 50)
+            }
         }
     }
 }

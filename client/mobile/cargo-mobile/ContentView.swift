@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  cargo-mobile
-//
-//  Created by Аяжан on 6/11/2024.
-//
-
 import SwiftUI
 struct ContentView: View {
     @StateObject private var scannerViewModel = ScannerViewModel()
