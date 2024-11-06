@@ -196,6 +196,19 @@ app.get('/api/cargo/status/:status', async (req, res) => {
   }
 })
 
+app.get('/api/cargo/awb/:awbNumber', async (req, res) => {
+  try {
+    const cargo = await Cargo.findOne({ awbNumber: req.params.awbNumber })
+    if (cargo) {
+      res.json(cargo)
+    } else {
+      res.status(404).json({ message: 'Cargo not found' })
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+})
+
 // Search cargo by various criteria
 app.get('/api/cargo/search', async (req, res) => {
   try {
