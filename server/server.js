@@ -23,17 +23,48 @@ mongoose
     console.error('MongoDB connection error:', err)
   })
 
-// Schemas
+// Enhanced Schema with validation
 const cargoSchema = new mongoose.Schema({
-  awbNumber: { type: String, required: true, unique: true },
-  origin: { type: String, required: true },
-  destination: { type: String, required: true },
+  awbNumber: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: function (v) {
+        return /^\d{3}-\d{8}$/.test(v)
+      },
+      message: (props) =>
+        `${props.value} is not a valid AWB number! Format should be XXX-XXXXXXXX`,
+    },
+  },
+  origin: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 3,
+    uppercase: true,
+  },
+  destination: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 3,
+    uppercase: true,
+  },
   weight: String,
-  pieces: Number,
+  pieces: {
+    type: Number,
+    min: 1,
+    required: true,
+  },
   shipper: String,
   consignee: String,
   specialHandling: [String],
-  status: String,
+  status: {
+    type: String,
+    enum: ['Awaiting', 'In Progress', 'Done', 'Cancelled'],
+    default: 'Awaiting',
+  },
   description: String,
   deadline: Date,
   timestamp: { type: Date, default: Date.now },
@@ -69,20 +100,7 @@ async function populateDatabase() {
           shipper: 'Global Tech Manufacturing',
           consignee: 'Singapore Electronics',
           specialHandling: ['DGR', 'CAO'],
-          status: 'Done',
-          description: 'Industrial Equipment',
-          deadline: new Date(Date.now() + 7200000), // 2 hours from now
-        },
-        {
-          awbNumber: '160-87854301',
-          origin: 'PVG',
-          destination: 'SIN',
-          weight: '1,240 KG',
-          pieces: 8,
-          shipper: 'Global Tech Manufacturing',
-          consignee: 'Singapore Electronics',
-          specialHandling: ['DGR', 'CAO'],
-          status: 'Done',
+          status: 'In Transit',
           description: 'Industrial Equipment',
           deadline: new Date(Date.now() + 7200000), // 2 hours from now
         },
@@ -97,18 +115,59 @@ async function populateDatabase() {
 
 populateDatabase()
 
-// API Routes
-// Get all cargo
-app.get('/api/cargo', async (req, res) => {
+// Enhanced POST endpoint with validation
+app.post('/api/cargo', async (req, res) => {
   try {
-    const cargo = await Cargo.find()
-    res.json(cargo)
+    // Basic validation
+    const requiredFields = ['awbNumber', 'origin', 'destination', 'pieces']
+    for (const field of requiredFields) {
+      if (!req.body[field]) {
+        return res.status(400).json({ message: `${field} is required` })
+      }
+    }
+
+    // AWB number format validation
+    if (!/^\d{3}-\d{8}$/.test(req.body.awbNumber)) {
+      return res.status(400).json({
+        message: 'Invalid AWB number format. Should be XXX-XXXXXXXX',
+      })
+    }
+
+    // Airport code validation
+    if (req.body.origin.length !== 3 || req.body.destination.length !== 3) {
+      return res.status(400).json({
+        message: 'Origin and destination must be 3-letter airport codes',
+      })
+    }
+
+    // Create and save the cargo
+    const cargo = new Cargo(req.body)
+    const newCargo = await cargo.save()
+    res.status(201).json(newCargo)
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    if (error.code === 11000) {
+      res.status(400).json({ message: 'AWB number already exists' })
+    } else {
+      res.status(400).json({ message: error.message })
+    }
   }
 })
 
-// Get awaiting cargo (not scanned yet)
+// Bulk insert endpoint (for testing)
+app.post('/api/cargo/bulk', async (req, res) => {
+  try {
+    const cargos = req.body
+    if (!Array.isArray(cargos)) {
+      return res.status(400).json({ message: 'Request body must be an array' })
+    }
+
+    const result = await Cargo.insertMany(cargos, { ordered: false })
+    res.status(201).json(result)
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+})
+
 app.get('/api/cargo/awaiting', async (req, res) => {
   try {
     const cargo = await Cargo.find({ status: 'Awaiting' })
@@ -127,46 +186,32 @@ app.get('/api/cargo/history', async (req, res) => {
   }
 })
 
-// Get cargo by AWB number
-app.get('/api/cargo/:awbNumber', async (req, res) => {
+// Get cargo by status
+app.get('/api/cargo/status/:status', async (req, res) => {
   try {
-    const cargo = await Cargo.findOne({ awbNumber: req.params.awbNumber })
-    if (cargo) {
-      res.json(cargo)
-    } else {
-      res.status(404).json({ message: 'Cargo not found' })
-    }
+    const cargo = await Cargo.find({ status: req.params.status })
+    res.json(cargo)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
 })
 
-// Update cargo status
-app.put('/api/cargo/:awbNumber', async (req, res) => {
+// Search cargo by various criteria
+app.get('/api/cargo/search', async (req, res) => {
   try {
-    const cargo = await Cargo.findOneAndUpdate(
-      { awbNumber: req.params.awbNumber },
-      { $set: req.body },
-      { new: true }
-    )
-    if (cargo) {
-      res.json(cargo)
-    } else {
-      res.status(404).json({ message: 'Cargo not found' })
+    const query = {}
+    if (req.query.origin) query.origin = req.query.origin.toUpperCase()
+    if (req.query.destination)
+      query.destination = req.query.destination.toUpperCase()
+    if (req.query.status) query.status = req.query.status
+    if (req.query.specialHandling) {
+      query.specialHandling = { $in: [req.query.specialHandling] }
     }
+
+    const cargo = await Cargo.find(query)
+    res.json(cargo)
   } catch (error) {
     res.status(500).json({ message: error.message })
-  }
-})
-
-// Add new cargo
-app.post('/api/cargo', async (req, res) => {
-  try {
-    const cargo = new Cargo(req.body)
-    const newCargo = await cargo.save()
-    res.status(201).json(newCargo)
-  } catch (error) {
-    res.status(400).json({ message: error.message })
   }
 })
 
