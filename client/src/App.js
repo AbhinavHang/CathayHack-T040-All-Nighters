@@ -1,24 +1,29 @@
-import {useAuth} from './contexts/AuthContext'
-import Header from './components/Header'
+import { useState } from 'react'
 
 export default function App() {
-  const {isLoggedIn} = useAuth()
+  const [image, setImage] = useState(null)
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setImage(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
 
   return (
     <div className='App'>
-      <Header />
-
-      {isLoggedIn ? <LoggedInText /> : <LoggedOutText />}
+      <div className='container'>
+        <div className='upload-box'>
+          <input type='file' accept='image/*' onChange={handleImageUpload} />
+        </div>
+        <div className='image-box'>
+          {image && <img src={image} alt='Uploaded' />}
+        </div>
+      </div>
     </div>
   )
 }
-
-const LoggedInText = () => {
-  const {account} = useAuth()
-
-  return <p>Hey, {account.username}! I'm happy to let you know: you are authenticated!</p>
-}
-
-const LoggedOutText = () => (
-  <p>Don't forget to start your backend server, then authenticate yourself.</p>
-)
