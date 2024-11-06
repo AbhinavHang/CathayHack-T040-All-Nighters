@@ -24,6 +24,7 @@
 		BCCE66F02CDBAD31000C39A1 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66EF2CDBAD31000C39A1 /* HistoryView.swift */; };
 		BCCE66F22CDBAD54000C39A1 /* AwaitingScansView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66F12CDBAD54000C39A1 /* AwaitingScansView.swift */; };
 		BCCE66F42CDBAD77000C39A1 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66F32CDBAD77000C39A1 /* UserProfileView.swift */; };
+		BCCE66F62CDBB7AC000C39A1 /* CargoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE66F52CDBB7AC000C39A1 /* CargoDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		BCCE66EF2CDBAD31000C39A1 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		BCCE66F12CDBAD54000C39A1 /* AwaitingScansView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwaitingScansView.swift; sourceTree = "<group>"; };
 		BCCE66F32CDBAD77000C39A1 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		BCCE66F52CDBB7AC000C39A1 /* CargoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				BCCE66EF2CDBAD31000C39A1 /* HistoryView.swift */,
 				BCCE66F12CDBAD54000C39A1 /* AwaitingScansView.swift */,
 				BCCE66F32CDBAD77000C39A1 /* UserProfileView.swift */,
+				BCCE66F52CDBB7AC000C39A1 /* CargoDetailView.swift */,
 			);
 			path = "cargo-mobile";
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				BCCE66EC2CDBACD5000C39A1 /* MainTabView.swift in Sources */,
 				BCCE66EA2CDBAA7F000C39A1 /* CameraPreviewView.swift in Sources */,
 				BCCE66F22CDBAD54000C39A1 /* AwaitingScansView.swift in Sources */,
+				BCCE66F62CDBB7AC000C39A1 /* CargoDetailView.swift in Sources */,
 				BCCE66F42CDBAD77000C39A1 /* UserProfileView.swift in Sources */,
 				BCCE66792CDB80C2000C39A1 /* cargo_mobileApp.swift in Sources */,
 				BCCE66F02CDBAD31000C39A1 /* HistoryView.swift in Sources */,

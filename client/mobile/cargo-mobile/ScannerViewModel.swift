@@ -59,6 +59,7 @@ class ScannerViewModel: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
             return CargoLabel(
                 id: String(components[1]),
                 awbNumber: String(components[1]),
+                origin: "Hong Kong",
                 destination: String(components[2]),
                 timestamp: Date(),
                 weight: "0.0 KG",  // Default values
@@ -66,7 +67,9 @@ class ScannerViewModel: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
                 shipper: "Cathay",
                 consignee: "John",
                 specialHandling: [],
-                status: "Pending"
+                status: "Pending",
+                description: "Luggage",
+                deadline: Date().addingTimeInterval(3600) // 1 hour from now
             )
         }
         return nil

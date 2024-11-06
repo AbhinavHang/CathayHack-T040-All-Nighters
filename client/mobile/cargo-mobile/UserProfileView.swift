@@ -65,40 +65,44 @@ struct CargoLabelRow: View {
     let label: CargoLabel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text(label.awbNumber)
-                    .font(.headline)
-                Spacer()
-                Text(label.status)
-                    .font(.subheadline)
-                    .padding(4)
-                    .background(statusColor(for: label.status))
-                    .foregroundColor(.white)
-                    .cornerRadius(4)
-            }
-            
-            Text("To: \(label.destination)")
-                .font(.subheadline)
-            
-            if !label.specialHandling.isEmpty {
+        NavigationLink(destination: CargoDetailView(cargo: label)) {
+            VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    ForEach(label.specialHandling, id: \.self) { code in
-                        Text(code)
-                            .font(.caption)
-                            .padding(4)
-                            .background(Color.orange)
-                            .foregroundColor(.white)
-                            .cornerRadius(4)
+                    Text(label.awbNumber)
+                        .font(.headline)
+                    Spacer()
+                    Text(label.status)
+                        .font(.subheadline)
+                        .padding(4)
+                        .background(statusColor(for: label.status))
+                        .foregroundColor(.white)
+                        .cornerRadius(4)
+                }
+                
+                Text("\(label.origin) → \(label.destination)")
+                    .font(.subheadline)
+                
+                if !label.specialHandling.isEmpty {
+                    HStack {
+                        ForEach(label.specialHandling, id: \.self) { code in
+                            Text(code)
+                                .font(.caption)
+                                .padding(4)
+                                .background(Color.orange)
+                                .foregroundColor(.white)
+                                .cornerRadius(4)
+                        }
                     }
                 }
+                
+                if let deadline = label.deadline {
+                    Text("Load until: \(deadline.formatted(date: .abbreviated, time: .shortened))")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
             }
-            
-            Text("Scanned: \(label.timestamp.formatted())")
-                .font(.caption)
-                .foregroundColor(.secondary)
+            .padding(.vertical, 4)
         }
-        .padding(.vertical, 4)
     }
     
     private func statusColor(for status: String) -> Color {
@@ -119,10 +123,15 @@ struct AwaitingScanRow: View {
                 Text(scan.awbNumber)
                     .font(.headline)
                 Spacer()
-                PriorityBadge(priority: scan.priority)
+                Text(timeRemaining)
+                    .font(.caption)
+                    .padding(4)
+                    .background(timeRemainingColor)
+                    .foregroundColor(.white)
+                    .cornerRadius(4)
             }
             
-            Text("To: \(scan.destination)")
+            Text("\(scan.origin) → \(scan.destination)")
                 .font(.subheadline)
             
             if !scan.specialHandling.isEmpty {
@@ -138,14 +147,29 @@ struct AwaitingScanRow: View {
                 }
             }
             
-            HStack {
-                Image(systemName: "clock")
-                Text("Deadline: \(scan.deadline.formatted(date: .omitted, time: .shortened))")
-            }
-            .font(.caption)
-            .foregroundColor(.secondary)
+            Text("Load until: \(scan.deadline.formatted(date: .abbreviated, time: .shortened))")
+                .font(.caption)
+                .foregroundColor(.secondary)
         }
         .padding(.vertical, 4)
+    }
+    
+    private var timeRemaining: String {
+        let remaining = scan.deadline.timeIntervalSince(Date())
+        let hours = Int(remaining / 3600)
+        let minutes = Int((remaining.truncatingRemainder(dividingBy: 3600)) / 60)
+        return "\(hours)h \(minutes)m"
+    }
+    
+    private var timeRemainingColor: Color {
+        let remaining = scan.deadline.timeIntervalSince(Date())
+        if remaining < 3600 { // Less than 1 hour
+            return .red
+        } else if remaining < 7200 { // Less than 2 hours
+            return .orange
+        } else {
+            return .blue
+        }
     }
 }
 
@@ -189,10 +213,13 @@ struct InfoRow: View {
 struct AwaitingScan: Identifiable {
     let id: String
     let awbNumber: String
-    let priority: String
     let deadline: Date
+    let origin: String
     let destination: String
     let specialHandling: [String]
+    let pieces: Int
+    let weight: String
+    let description: String
 }
 
 struct UserProfile {
@@ -209,4 +236,20 @@ struct PerformanceMetrics {
     let scansToday: Int
     let accuracy: Double
     let averageTimePerScan: Double
+}
+
+struct DetailRow: View {
+    let title: String
+    let value: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(title)
+                .font(.caption)
+                .foregroundColor(.secondary)
+            Text(value)
+                .font(.body)
+        }
+        .padding(.vertical, 2)
+    }
 }
