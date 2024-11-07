@@ -1,20 +1,29 @@
-// server.js
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv').config()
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
-app.use(cors())
+// Enhanced CORS configuration
+app.use(
+  cors({
+    origin: '*', // Update this with your frontend domain in production
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+)
+
 app.use(express.json())
 
-// MongoDB Connection
+// MongoDB Connection with enhanced error handling
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect('mongodb+srv://admin:admin@cluster0.nlek8.mongodb.net/', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
   })
   .then(() => {
     console.log('Connected to MongoDB')
@@ -22,6 +31,15 @@ mongoose
   .catch((err) => {
     console.error('MongoDB connection error:', err)
   })
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV,
+  })
+})
 
 // Enhanced Schema with validation
 const cargoSchema = new mongoose.Schema({
@@ -72,7 +90,7 @@ const cargoSchema = new mongoose.Schema({
 
 const Cargo = mongoose.model('Cargo', cargoSchema)
 
-// Pre-populate database with sample data
+// Database initialization with sample data
 async function populateDatabase() {
   try {
     const count = await Cargo.countDocuments()
@@ -89,7 +107,7 @@ async function populateDatabase() {
           specialHandling: ['PER', 'VUN'],
           status: 'Awaiting',
           description: 'Electronic Components',
-          deadline: new Date(Date.now() + 3600000), // 1 hour from now
+          deadline: new Date(Date.now() + 3600000),
         },
         {
           awbNumber: '160-87654321',
@@ -100,9 +118,22 @@ async function populateDatabase() {
           shipper: 'Global Tech Manufacturing',
           consignee: 'Singapore Electronics',
           specialHandling: ['DGR', 'CAO'],
-          status: 'In Transit',
+          status: 'In Progress',
           description: 'Industrial Equipment',
-          deadline: new Date(Date.now() + 7200000), // 2 hours from now
+          deadline: new Date(Date.now() + 7200000),
+        },
+        {
+          awbNumber: '160-11112222',
+          origin: 'NRT',
+          destination: 'ICN',
+          weight: '850 KG',
+          pieces: 5,
+          shipper: 'Tokyo Electronics',
+          consignee: 'Seoul Distributors',
+          specialHandling: ['PER'],
+          status: 'Done',
+          description: 'Consumer Electronics',
+          deadline: new Date(Date.now() - 3600000),
         },
       ]
       await Cargo.insertMany(sampleCargo)
@@ -113,75 +144,54 @@ async function populateDatabase() {
   }
 }
 
+// Initialize database
 populateDatabase()
 
-// Enhanced POST endpoint with validation
-app.post('/api/cargo', async (req, res) => {
+// API Routes with error handling
+// Get all cargo
+app.get('/api/cargo', async (req, res) => {
   try {
-    // Basic validation
-    const requiredFields = ['awbNumber', 'origin', 'destination', 'pieces']
-    for (const field of requiredFields) {
-      if (!req.body[field]) {
-        return res.status(400).json({ message: `${field} is required` })
-      }
-    }
-
-    // AWB number format validation
-    if (!/^\d{3}-\d{8}$/.test(req.body.awbNumber)) {
-      return res.status(400).json({
-        message: 'Invalid AWB number format. Should be XXX-XXXXXXXX',
-      })
-    }
-
-    // Airport code validation
-    if (req.body.origin.length !== 3 || req.body.destination.length !== 3) {
-      return res.status(400).json({
-        message: 'Origin and destination must be 3-letter airport codes',
-      })
-    }
-
-    // Create and save the cargo
-    const cargo = new Cargo(req.body)
-    const newCargo = await cargo.save()
-    res.status(201).json(newCargo)
+    const cargo = await Cargo.find()
+    res.json(cargo)
   } catch (error) {
-    if (error.code === 11000) {
-      res.status(400).json({ message: 'AWB number already exists' })
-    } else {
-      res.status(400).json({ message: error.message })
-    }
+    console.error('Error fetching all cargo:', error)
+    res.status(500).json({ message: error.message })
   }
 })
 
-// Bulk insert endpoint (for testing)
-app.post('/api/cargo/bulk', async (req, res) => {
-  try {
-    const cargos = req.body
-    if (!Array.isArray(cargos)) {
-      return res.status(400).json({ message: 'Request body must be an array' })
-    }
-
-    const result = await Cargo.insertMany(cargos, { ordered: false })
-    res.status(201).json(result)
-  } catch (error) {
-    res.status(400).json({ message: error.message })
-  }
-})
-
+// Get awaiting cargo
 app.get('/api/cargo/awaiting', async (req, res) => {
   try {
     const cargo = await Cargo.find({ status: 'Awaiting' })
     res.json(cargo)
   } catch (error) {
+    console.error('Error fetching awaiting cargo:', error)
     res.status(500).json({ message: error.message })
   }
 })
 
+// Get cargo history
 app.get('/api/cargo/history', async (req, res) => {
   try {
     const cargo = await Cargo.find({ status: 'Done' })
     res.json(cargo)
   } catch (error) {
+    console.error('Error fetching cargo history:', error)
+    res.status(500).json({ message: error.message })
+  }
+})
+
+// Get cargo by AWB
+app.get('/api/cargo/awb/:awbNumber', async (req, res) => {
+  try {
+    const cargo = await Cargo.findOne({ awbNumber: req.params.awbNumber })
+    if (cargo) {
+      res.json(cargo)
+    } else {
+      res.status(404).json({ message: 'Cargo not found' })
+    }
+  } catch (error) {
+    console.error('Error fetching cargo by AWB:', error)
     res.status(500).json({ message: error.message })
   }
 })
@@ -192,24 +202,12 @@ app.get('/api/cargo/status/:status', async (req, res) => {
     const cargo = await Cargo.find({ status: req.params.status })
     res.json(cargo)
   } catch (error) {
+    console.error('Error fetching cargo by status:', error)
     res.status(500).json({ message: error.message })
   }
 })
 
-app.get('/api/cargo/awb/:awbNumber', async (req, res) => {
-  try {
-    const cargo = await Cargo.findOne({ awbNumber: req.params.awbNumber })
-    if (cargo) {
-      res.json(cargo)
-    } else {
-      res.status(404).json({ message: 'Cargo not found' })
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-})
-
-// Search cargo by various criteria
+// Search cargo
 app.get('/api/cargo/search', async (req, res) => {
   try {
     const query = {}
@@ -224,10 +222,102 @@ app.get('/api/cargo/search', async (req, res) => {
     const cargo = await Cargo.find(query)
     res.json(cargo)
   } catch (error) {
+    console.error('Error searching cargo:', error)
     res.status(500).json({ message: error.message })
   }
 })
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`)
+// Create new cargo
+app.post('/api/cargo', async (req, res) => {
+  try {
+    // Validation
+    const requiredFields = ['awbNumber', 'origin', 'destination', 'pieces']
+    for (const field of requiredFields) {
+      if (!req.body[field]) {
+        return res.status(400).json({ message: `${field} is required` })
+      }
+    }
+
+    if (!/^\d{3}-\d{8}$/.test(req.body.awbNumber)) {
+      return res.status(400).json({
+        message: 'Invalid AWB number format. Should be XXX-XXXXXXXX',
+      })
+    }
+
+    if (req.body.origin.length !== 3 || req.body.destination.length !== 3) {
+      return res.status(400).json({
+        message: 'Origin and destination must be 3-letter airport codes',
+      })
+    }
+
+    const cargo = new Cargo(req.body)
+    const newCargo = await cargo.save()
+    res.status(201).json(newCargo)
+  } catch (error) {
+    console.error('Error creating cargo:', error)
+    if (error.code === 11000) {
+      res.status(400).json({ message: 'AWB number already exists' })
+    } else {
+      res.status(400).json({ message: error.message })
+    }
+  }
 })
+
+// Update cargo status
+app.put('/api/cargo/:awbNumber', async (req, res) => {
+  try {
+    const cargo = await Cargo.findOneAndUpdate(
+      { awbNumber: req.params.awbNumber },
+      { $set: req.body },
+      { new: true, runValidators: true }
+    )
+    if (cargo) {
+      res.json(cargo)
+    } else {
+      res.status(404).json({ message: 'Cargo not found' })
+    }
+  } catch (error) {
+    console.error('Error updating cargo:', error)
+    res.status(400).json({ message: error.message })
+  }
+})
+
+// Bulk insert (for testing)
+app.post('/api/cargo/bulk', async (req, res) => {
+  try {
+    if (!Array.isArray(req.body)) {
+      return res.status(400).json({ message: 'Request body must be an array' })
+    }
+    const result = await Cargo.insertMany(req.body, { ordered: false })
+    res.status(201).json(result)
+  } catch (error) {
+    console.error('Error bulk inserting cargo:', error)
+    res.status(400).json({ message: error.message })
+  }
+})
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).json({
+    message: 'Something broke!',
+    error:
+      process.env.NODE_ENV === 'development'
+        ? err.message
+        : 'Internal server error',
+  })
+})
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' })
+})
+
+// Start server if not in production (Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`)
+  })
+}
+
+module.exports = app
