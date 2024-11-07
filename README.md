@@ -15,6 +15,9 @@ A mobile application for scanning and managing air cargo labels, built with Swif
 - 📊 History tracking
 - ⏰ Deadline management
 - 🔄 Status updates
+- ![image](screnshot.png)
+- ![image](history.png)
+- ![image](scanner.png)
 
 ## Tech Stack
 
