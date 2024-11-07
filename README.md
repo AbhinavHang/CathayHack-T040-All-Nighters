@@ -30,11 +30,10 @@
 1. Start the server:
    ```bash
    cd server
-   npm start
+   npm install
    ```
 2. Start the client:
    ```bash
-   cd ../client
    node server.js
    ```
 3. Open your browser and navigate to `http://localhost:3000`.
@@ -43,7 +42,7 @@
 
 - MongoDB for database
 - Express.js for server-side framework
-- SWIFT UI for client-side framework
+- SWIFT UI for mobile app
 - Node.js for server environment
 
 ## Contributing
